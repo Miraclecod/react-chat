@@ -1,4 +1,5 @@
-import React, {ChangeEvent} from "react";
+import React from "react";
+import {Form, Control} from "react-redux-form";
 
 const formStyle = {
     width: "70px",
@@ -6,7 +7,7 @@ const formStyle = {
 }
 
 const FormLogin = () => {
-    let text = 'enter'
+
     const [inputText, setInputText] = React.useState('');
 
     function handleOnChange(e){
@@ -24,7 +25,7 @@ const FormLogin = () => {
     }
 
     return(
-      <>
+     <>
       <form style={formStyle}>
           <p>Login : </p><input type="label" onChange={handleOnChange} /><br />
       <br />
@@ -32,7 +33,19 @@ const FormLogin = () => {
       <br />
           <button onClick={handleOnClick}>Войти</button>
       </form>
-      </>
+      {/*<Form model="user" >*/}
+      {/*    <Control*/}
+      {/*        type="email"*/}
+      {/*        model=".email"*/}
+      {/*    />*/}
+
+      {/*    <Control*/}
+      {/*        type="password"*/}
+      {/*        model=".password"*/}
+      {/*    />*/}
+      {/*</Form>*/}
+
+    </>
     );
 }
 
