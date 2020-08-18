@@ -1,5 +1,5 @@
 
-export default registration(state = {}, action) {
+export function registation(state = {}, action) {
     switch (action.type) {
         case 'REGISTER_REQUEST':
             return { registering: true }

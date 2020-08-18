@@ -1,5 +1,5 @@
 
-export default alertMessage(state = {}, action) {
+export function alertMessageReducer(state = {}, action) {
         switch (action.type) {
             case 'SUCCESS':
                 return {
