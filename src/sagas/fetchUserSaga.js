@@ -11,3 +11,4 @@ function* fetchUser(action) {
 function* fetchUserSaga() {
     yield takeLatest()
 }
+export default fetchUserSaga;

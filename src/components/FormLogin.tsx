@@ -1,7 +1,5 @@
 import React from "react";
 import {Form, Control} from "react-redux-form";
-import { connect } from "react-redux"
-import "../styles/main.sass";
 
 const FormLogin = () => {
 
@@ -38,17 +36,18 @@ const FormLogin = () => {
       {/*<Form model="user" >*/}
       {/*    <Control*/}
       {/*        type="email"*/}
-      {/*        model=".email"*/}
+      {/*        model="user.email"*/}
       {/*    />*/}
 
       {/*    <Control*/}
       {/*        type="password"*/}
-      {/*        model=".password"*/}
+      {/*        model="user.password"*/}
       {/*    />*/}
       {/*</Form>*/}
 
     </>
     );
 }
+
 
 export default FormLogin;
