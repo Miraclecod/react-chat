@@ -1,35 +1,37 @@
 import React from "react";
 import {Form, Control} from "react-redux-form";
-
-const formStyle = {
-    width: "70px",
-    margin: "auto"
-}
+import { connect } from "react-redux"
+import "../styles/main.sass";
 
 const FormLogin = () => {
 
-    const [inputText, setInputText] = React.useState('');
+    const initialState = { email: '', password: '' }
+
+    const [user, setUser] = React.useState(initialState);
+
 
     function handleOnChange(e){
-        setInputText(e.target.value);
+        const {name, value} = e.target;
+        setUser({...user, [name]: value});
     }
 
     function handleOnClick(e) {
-        let emailSymbol = '@'
+        const reg = new RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
         e.preventDefault();
-        if(inputText.length > 0 && inputText.includes(emailSymbol)){
-            console.log(inputText);
+        if(user.email && user.password && reg.test(user.email)) {
+            console.log(user);
+            setUser(initialState);
         }else{
-            alert("enter text")
+
         }
     }
 
     return(
      <>
-      <form style={formStyle}>
-          <p>Login : </p><input type="label" onChange={handleOnChange} /><br />
+      <form>
+          <p>Login : </p><input type="email" name="email" value={user.email} onChange={handleOnChange} /><br />
       <br />
-          <p>Password : </p><input type="label" onChange={handleOnChange} /><br />
+          <p>Password : </p><input type="password" name="password" value={user.password}  onChange={handleOnChange} /><br />
       <br />
           <button onClick={handleOnClick}>Войти</button>
       </form>

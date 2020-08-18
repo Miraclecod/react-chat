@@ -1,12 +1,19 @@
 import React from "react";
 import FormLogin from "../components/FormLogin";
 
+const  container = {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center"
+}
+
+
 const Login = () => {
 
     return(
-        <>
-        <FormLogin />
-        </>
+        <div style={container}>
+            <FormLogin />
+        </div>
     );
 }
 
