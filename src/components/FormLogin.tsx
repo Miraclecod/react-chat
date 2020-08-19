@@ -1,5 +1,5 @@
 import React from "react";
-import {Form, Control} from "react-redux-form";
+import {useDispatch, useSelector} from "react-redux";
 
 const FormLogin = () => {
 
@@ -7,16 +7,19 @@ const FormLogin = () => {
 
     const [user, setUser] = React.useState(initialState);
 
-    const [submitted, setSubmitted] = React.useState(false);
+    const [submitted, setSubmitted] = React.useState(false);;
+    const dispatch = useDispatch()
 
+    // @ts-ignore
     function handleOnChange(e){
         const {name, value} = e.target;
         setUser({...user, [name]: value});
     }
-
+    // @ts-ignore
     function handleOnClick(e) {
         const reg = new RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
         e.preventDefault();
+        setSubmitted(true);
         if(user.email && user.password && reg.test(user.email)) {
 
         }else{
@@ -26,12 +29,20 @@ const FormLogin = () => {
 
     return(
         <>
-            <form>
-                <p>Login : </p><input type="email" name="email" value={user.email} onChange={handleOnChange} /><br />
+            <form className="formStyle">
+                <p className="textFormStyle">Login : </p><input type="email" name="email" className="inputStyle" value={user.email} placeholder="enter email" onChange={handleOnChange} /><br />
+                {
+                    submitted && !user.email &&
+                    <div className="invalidFeedback">Email is required</div>
+                }
                 <br />
-                <p>Password : </p><input type="password" name="password" value={user.password}  onChange={handleOnChange} /><br />
+                <p className="textFormStyle" >Password : </p><input type="password" name="password" className="inputStyle" value={user.password} placeholder="enter password" onChange={handleOnChange} /><br />
+                {
+                    submitted && !user.password &&
+                    <div className="invalidFeedback">Password is required</div>
+                }
                 <br />
-                <button onClick={handleOnClick}>Войти</button>
+                <button className="buttonForm" onClick={handleOnClick}>Log in</button>
             </form>
         </>
     );

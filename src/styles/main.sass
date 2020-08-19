@@ -1,8 +1,44 @@
-
-.colorSuccess
-  color: blueviolet
+@import "variables"
 
 .container
   display: flex
   align-items: center
   justify-content: center
+
+.textFormStyle
+  color: black
+  font-size: 18px
+  font-weight: bold
+
+.buttonForm
+  width: 70px
+  height: 35px
+  color: #fff
+  background-color: $inputColor
+  border: 1px solid $inputColor
+  outline: none
+  border-radius: .25rem
+  font-size: 1rem
+  &:hover
+    cursor: pointer
+
+.invalidFeedback
+  width: 100%
+  color: #721c24
+  background-color: #f8d7da
+  border: 1px solid #f5c6cb
+  padding: .25rem .75rem
+  border-radius: .25rem
+
+.inputStyle
+  width: 100%
+  padding: .375rem .75rem
+  font-size: 1rem
+  line-height: 1.5
+  color: #495057
+  background-color: #fff
+  background-clip: padding-box
+  border: 1px solid #ced4da
+  border-radius: .25rem
+  &:focus
+    border: 1px solid #29B0D9

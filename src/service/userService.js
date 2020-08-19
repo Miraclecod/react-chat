@@ -1,4 +1,4 @@
-export const userActions = {
+export const userServices = {
     login,
     logout,
     register

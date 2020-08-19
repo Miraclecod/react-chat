@@ -1,4 +1,4 @@
-import {userService} from "../service/userService";
+import {userServices} from "../service/userService";
 import {alertMessageActions} from "./alertMessage";
 import {userConstant} from "../constant/userConstant";
 
@@ -13,7 +13,7 @@ function login(username, password) {
     return dispatch => {
         dispatch(request({ username }));
 
-        userService.login(username, password)
+        userServices.login(username, password)
             .then(
                 user => {
                     dispatch(success(user));
@@ -32,7 +32,7 @@ function login(username, password) {
 }
 
 function logout() {
-    userService.logout();
+    userServices.logout();
     return { type: userConstant.LOGOUT };
 }
 
@@ -40,7 +40,7 @@ function register(user) {
     return dispatch => {
         dispatch(request(user));
 
-        userService.register(user)
+        userServices.register(user)
             .then(
                 user => {
                     dispatch(success());
