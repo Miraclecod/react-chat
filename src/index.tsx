@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import {applyMiddleware, createStore, compose} from "redux";
 import createSagaMiddleware from "redux-saga";
+import thunkMiddleware from "redux-thunk"
 //@ts-ignore
 import { rootReducer } from "./redux/rootReducer";
 import Login from "./Pages/Login";
@@ -13,6 +14,9 @@ import "./styles/main.sass";
 //const sagaMiddleware = createSagaMiddleware()
 
  const store = createStore(rootReducer, compose(
+    applyMiddleware(
+        thunkMiddleware
+    ),
      //@ts-ignore
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
  ))

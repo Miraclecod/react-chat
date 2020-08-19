@@ -1,5 +1,6 @@
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
+import {userActions} from "../redux/actionTypes/actions" 
 
 const FormLogin = () => {
 
@@ -21,7 +22,7 @@ const FormLogin = () => {
         e.preventDefault();
         setSubmitted(true);
         if(user.email && user.password && reg.test(user.email)) {
-            //dispatch(userActions.login(user.email, user.password));
+            dispatch(userActions.login(user.email, user.password));
         }else{
 
         }
