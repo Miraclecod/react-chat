@@ -28,3 +28,11 @@ function register(user) {
     };
     return fetch('/', requestOptions).then(res);
 }
+
+function deleteUser(user) {
+    const requestOptions = {
+        method: 'DELETE',
+        body: JSON.stringify(user)
+    }
+    return fetch('/', requestOptions.then(res));
+}

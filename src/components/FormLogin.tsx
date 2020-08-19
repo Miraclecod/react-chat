@@ -21,7 +21,7 @@ const FormLogin = () => {
         e.preventDefault();
         setSubmitted(true);
         if(user.email && user.password && reg.test(user.email)) {
-
+            //dispatch(userActions.login(user.email, user.password));
         }else{
 
         }

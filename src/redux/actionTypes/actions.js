@@ -1,4 +1,4 @@
-import {userServices} from "../service/userService";
+import {userServices} from "../service/userService"
 import {alertMessageActions} from "./alertMessage";
 import {userConstant} from "../constant/userConstant";
 
