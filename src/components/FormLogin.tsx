@@ -1,5 +1,5 @@
 import React from "react";
-import {Form, Control} from "react-redux-form";
+import {Form, Control, Fieldset} from "react-redux-form";
 
 const FormLogin = () => {
 
@@ -7,6 +7,7 @@ const FormLogin = () => {
 
     const [user, setUser] = React.useState(initialState);
 
+    const [submitted, setSubmitted] = React.useState(false);
 
     function handleOnChange(e){
         const {name, value} = e.target;
@@ -17,8 +18,7 @@ const FormLogin = () => {
         const reg = new RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
         e.preventDefault();
         if(user.email && user.password && reg.test(user.email)) {
-            console.log(user);
-            setUser(initialState);
+
         }else{
 
         }
@@ -33,18 +33,6 @@ const FormLogin = () => {
       <br />
           <button onClick={handleOnClick}>Войти</button>
       </form>
-      {/*<Form model="user" >*/}
-      {/*    <Control*/}
-      {/*        type="email"*/}
-      {/*        model="user.email"*/}
-      {/*    />*/}
-
-      {/*    <Control*/}
-      {/*        type="password"*/}
-      {/*        model="user.password"*/}
-      {/*    />*/}
-      {/*</Form>*/}
-
     </>
     );
 }

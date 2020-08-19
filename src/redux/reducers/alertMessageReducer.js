@@ -1,15 +1,16 @@
+import { alertConstant } from "../constant/alertConstant"
 
 export function alertMessageReducer(state = {}, action) {
         switch (action.type) {
-            case 'SUCCESS':
+            case alertConstant.SUCCESS:
                 return {
                     message: action.message
                 }
-            case 'ERROR':
+            case alertConstant.SUCCESS:
                 return {
                     message: action.message
                 }
-            case 'CLEAR':
+            case alertConstant.CLEAR:
                 return {}
             default:
                 return state

@@ -35,7 +35,7 @@ module.exports = {
 
   resolve: {
     // Add '.ts' and '.tsx' as resolvable extensions.
-    extensions: [".ts", ".tsx", ".js", ".json"]
+    extensions: [".ts", ".tsx", ".js", ".json", "css", "sass"]
   },
 
   module: {
@@ -47,6 +47,14 @@ module.exports = {
           {
             loader: "ts-loader"
           }
+        ]
+      },
+      {
+        test: /\.css$/,
+        exclude: /node_modules/,
+        use: [
+          'style-loader',
+          'css-loader'
         ]
       },
       {

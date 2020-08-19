@@ -1,41 +1,59 @@
+import {userService} from "../service/userService";
+import {alertMessageActions} from "./alertMessage";
+import {userConstant} from "../constant/userConstant";
 
-export const FETCH_MESSAGES_REQUEST = 'FETCH_MESSAGES_REQUEST';
-export const FETCH_MESSAGES_SUCCESS = 'FETCH_MESSAGE_SUCCESS';
-export const FETCH_MESSAGES_FAILURE = 'FETCH_MESSAGES_FAILURE';
+export const userActions = {
+    login,
+    logout,
+    register
+};
 
-export const ADD_USER = 'ADD_USER'
+function login(username, password) {
+    return dispatch => {
+        dispatch(request({ username }));
 
-export function addUser(user) {
-    return {
-        type: ADD_USER,
-        payload: user
+        userService.login(username, password)
+            .then(
+                user => {
+                    dispatch(success(user));
+                    history.push('/');
+                },
+                error => {
+                    dispatch(failure(error.toString()));
+                    dispatch(alertMessageActions.error(error.toString()));
+                }
+            );
     };
+
+    function request(user) { return { type: userConstant.LOGIN_REQUEST, user } }
+    function success(user) { return { type: userConstant.LOGIN_SUCCESS, user } }
+    function failure(error) { return { type: userConstant.LOGIN_FAILURE, error } }
 }
 
-export function login(email, password) {
-    const requestOptions = {
-        method: 'POST',
-        body: JSON.stringify({email, password})
+function logout() {
+    userService.logout();
+    return { type: userConstant.LOGOUT };
+}
+
+function register(user) {
+    return dispatch => {
+        dispatch(request(user));
+
+        userService.register(user)
+            .then(
+                user => {
+                    dispatch(success());
+                    history.push('/login');
+                    dispatch(alertMessageActions.success('Registration successful'));
+                },
+                error => {
+                    dispatch(failure(error.toString()));
+                    dispatch(alertMessageActions.error(error.toString()));
+                }
+            );
     };
-    return fetch('/', requestOptions)
-        .then(res)
-        .then(user => {
-            localStorage.setItem('user', JSON.stringify(user));
-            return user;
-        })
+
+    function request(user) { return { type: userConstant.REGISTER_REQUEST, user } }
+    function success(user) { return { type: userConstant.REGISTER_SUCCESS, user } }
+    function failure(error) { return { type: userConstant.REGISTER_FAILURE, error } }
 }
-
-export function logout() {
-    localStorage.removeItem('user');
-}
-
-export function register(user) {
-    const requestOptions = {
-        method: 'POST',
-        body: JSON.stringify(user)
-    };
-    return fetch('/', requestOptions).then(res);
-}
-
-
-
