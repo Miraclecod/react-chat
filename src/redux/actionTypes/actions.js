@@ -2,6 +2,7 @@ import {userService} from "../service/userService";
 import {alertMessageActions} from "./alertMessage";
 import {userConstant} from "../constant/userConstant";
 
+
 export const userActions = {
     login,
     logout,
@@ -52,7 +53,6 @@ function register(user) {
                 }
             );
     };
-
     function request(user) { return { type: userConstant.REGISTER_REQUEST, user } }
     function success(user) { return { type: userConstant.REGISTER_SUCCESS, user } }
     function failure(error) { return { type: userConstant.REGISTER_FAILURE, error } }

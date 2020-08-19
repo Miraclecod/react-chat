@@ -1,6 +1,6 @@
 import {alertConstant} from "../constant/alertConstant";
 
-export const  alertMessageActions = {
+export const alertMessageActions = {
     success,
     error,
     clear

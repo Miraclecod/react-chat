@@ -1,5 +1,5 @@
 import React from "react";
-import {Form, Control, Fieldset} from "react-redux-form";
+import {Form, Control} from "react-redux-form";
 
 const FormLogin = () => {
 
@@ -25,17 +25,16 @@ const FormLogin = () => {
     }
 
     return(
-     <>
-      <form>
-          <p>Login : </p><input type="email" name="email" value={user.email} onChange={handleOnChange} /><br />
-      <br />
-          <p>Password : </p><input type="password" name="password" value={user.password}  onChange={handleOnChange} /><br />
-      <br />
-          <button onClick={handleOnClick}>Войти</button>
-      </form>
-    </>
+        <>
+            <form>
+                <p>Login : </p><input type="email" name="email" value={user.email} onChange={handleOnChange} /><br />
+                <br />
+                <p>Password : </p><input type="password" name="password" value={user.password}  onChange={handleOnChange} /><br />
+                <br />
+                <button onClick={handleOnClick}>Войти</button>
+            </form>
+        </>
     );
 }
-
 
 export default FormLogin;
