@@ -3,16 +3,13 @@ export const FETCH_MESSAGES_REQUEST = 'FETCH_MESSAGES_REQUEST';
 export const FETCH_MESSAGES_SUCCESS = 'FETCH_MESSAGE_SUCCESS';
 export const FETCH_MESSAGES_FAILURE = 'FETCH_MESSAGES_FAILURE';
 
-export const ADD_USER = 'ADD_USER'
-
-export function addUser(user) {
-    return {
-        type: ADD_USER,
-        payload: user
-    };
+export const userActions = {
+    login,
+    logout,
+    register
 }
 
-export function login(email, password) {
+function login(email, password) {
     const requestOptions = {
         method: 'POST',
         body: JSON.stringify({email, password})
@@ -25,11 +22,11 @@ export function login(email, password) {
         })
 }
 
-export function logout() {
+function logout() {
     localStorage.removeItem('user');
 }
 
-export function register(user) {
+function register(user) {
     const requestOptions = {
         method: 'POST',
         body: JSON.stringify(user)

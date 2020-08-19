@@ -7,13 +7,13 @@ export function authentication(state = initialState, action) {
     switch (action.type) {
         case 'FETCH_MESSAGES_REQUEST':
             return{
-                loggedIn: true,
+                loggingIn: true,
                 user: action.user
             };
         case 'FETCH_MESSAGE_SUCCESS':
             return{
-              loggedIn: true,
-              user: action.user
+                loggedIn: true,
+                user: action.user
             };
         case 'FETCH_MESSAGES_FAILURE':
             return {};
