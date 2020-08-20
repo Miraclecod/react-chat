@@ -1,3 +1,5 @@
+import * as firebase from "firebase";
+
 export const userServices = {
     login,
     logout,
@@ -9,16 +11,23 @@ function login(email, password) {
         method: 'POST',
         body: JSON.stringify({email, password})
     };
-    return fetch('/', requestOptions)
+    // return fetch('/', requestOptions)
+    //     .then(res)
+    //     .then(user => {
+    //         localStorage.setItem('user', JSON.stringify(user));
+    //         return user;
+    //     })
+    return firebase.auth().signInWithEmailAndPassword(email, password)
         .then(res)
         .then(user => {
-            localStorage.setItem('user', JSON.stringify(user));
-            return user;
+            localStorage.setItem('user', JSON.stringify(user))
         })
 }
 
 function logout() {
     localStorage.removeItem('user');
+    firebase.auth().signOut()
+        .catch(e)
 }
 
 function register(user) {
@@ -27,6 +36,7 @@ function register(user) {
         body: JSON.stringify(user)
     };
     return fetch('/', requestOptions).then(res);
+    //return firebase.auth().createUserWithEmailAndPassword(user);
 }
 
 function deleteUser(user) {

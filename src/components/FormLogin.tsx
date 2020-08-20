@@ -1,6 +1,7 @@
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {userActions} from "../redux/actionTypes/actions" 
+//@ts-ignore
+import {userActions} from "../redux/actionTypes/actions";
 
 const FormLogin = () => {
 
@@ -8,7 +9,9 @@ const FormLogin = () => {
 
     const [user, setUser] = React.useState(initialState);
 
-    const [submitted, setSubmitted] = React.useState(false);;
+    const [submitted, setSubmitted] = React.useState(false);
+    //@ts-ignore
+    const alertMessage = useSelector(state => state.alertMessageReducer.message);
     const dispatch = useDispatch()
 
     // @ts-ignore
@@ -44,6 +47,7 @@ const FormLogin = () => {
                 }
                 <br />
                 <button className="buttonForm" onClick={handleOnClick}>Log in</button>
+                { alertMessage }
             </form>
         </>
     );

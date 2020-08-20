@@ -6,7 +6,7 @@ export function alertMessageReducer(state = {}, action) {
                 return {
                     message: action.message
                 }
-            case alertConstant.SUCCESS:
+            case alertConstant.ERROR:
                 return {
                     message: action.message
                 }

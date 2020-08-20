@@ -1,4 +1,7 @@
 import React from "react";
+import {useDispatch, useSelector} from "react-redux";
+//@ts-ignore
+import {userActions} from "../redux/actionTypes/actions"
 
 const FormRegister = () => {
 
@@ -6,7 +9,7 @@ const FormRegister = () => {
 
     const [user, setUser] = React.useState(initialState);
     const [submitted, setSubmitted] = React.useState(false);
-
+    const dispatch = useDispatch();
     // @ts-ignore
     function handleOnChange(e) {
         const {name, value} = e.target;
@@ -16,7 +19,7 @@ const FormRegister = () => {
     function handleOnClick(e) {
         e.preventDefault();
         setSubmitted(true);
-        if(user.name && user.password && user.name && user.lastName) console.log(user);
+        if(user.name && user.password && user.name && user.lastName) dispatch(userActions.register(user));
     }
 
     return(
