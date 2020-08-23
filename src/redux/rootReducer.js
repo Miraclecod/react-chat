@@ -6,5 +6,5 @@ import {alertMessageReducer} from "./reducers/alertMessageReducer";
 export const rootReducer = combineReducers({
     authentication: authentication,
     registration: registration,
-    alertMessageReducer: alertMessageReducer
+    alertMessage: alertMessageReducer
 })

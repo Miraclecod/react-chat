@@ -1,5 +1,6 @@
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
+import {Link} from "react-router-dom"
 //@ts-ignore
 import {userActions} from "../redux/actionTypes/actions"
 
@@ -46,6 +47,7 @@ const FormRegister = () => {
               <div className="invalidFeedback">Lastname is required</div>
           }
           <button onClick={handleOnClick} className="buttonForm">Registration</button>
+          {/* <Link to="/" >Back</Link> */}
       </form>
       </>
     );

@@ -1,4 +1,7 @@
-import * as firebase from "firebase";
+import {auth} from "../firebase"
+// Retrieve services via the defaultApp variable...
+
+
 
 export const userServices = {
     login,
@@ -17,16 +20,19 @@ function login(email, password) {
     //         localStorage.setItem('user', JSON.stringify(user));
     //         return user;
     //     })
-    return firebase.auth().signInWithEmailAndPassword(email, password)
-        .then(res)
-        .then(user => {
-            localStorage.setItem('user', JSON.stringify(user))
-        })
+    return auth.signInWithEmailAndPassword(email, password)
+        .then(function(user) {
+            console.log(user);
+            localStorage.setItem('user', JSON.stringify(user.user.refreshToken))
+            return user.user
+        }).catch(function(error){
+            console.log(error);
+        });
 }
 
 function logout() {
     localStorage.removeItem('user');
-    firebase.auth().signOut()
+    auth.signOut()
         .catch(e)
 }
 
@@ -35,8 +41,8 @@ function register(user) {
         method: 'POST',
         body: JSON.stringify(user)
     };
-    return fetch('/', requestOptions).then(res);
-    //return firebase.auth().createUserWithEmailAndPassword(user);
+    //return fetch('/', requestOptions).then(res);
+    return auth.createUserWithEmailAndPassword(user);
 }
 
 function deleteUser(user) {

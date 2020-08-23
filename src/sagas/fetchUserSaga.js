@@ -1,6 +1,6 @@
-import { takeLatest } from "redux-saga/effects"
+import { call, put, takeLatest } from "redux-saga/effects"
 
-function* fetchUser(user, password) {
+function* workGetUser(user, password) {
     try{
         const token = yield call("", user, password)
         yield put({type: 'LOGIN_SUCCESS', token})
@@ -10,7 +10,8 @@ function* fetchUser(user, password) {
     }
 }
 
-function* fetchUserSaga() {
+function* watchUser() {
     yield takeLatest()
 }
-export default fetchUserSaga;
+
+export default watchUser;

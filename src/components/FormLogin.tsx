@@ -1,5 +1,6 @@
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
+import {Link} from "react-router-dom";
 //@ts-ignore
 import {userActions} from "../redux/actionTypes/actions";
 
@@ -11,9 +12,8 @@ const FormLogin = () => {
 
     const [submitted, setSubmitted] = React.useState(false);
     //@ts-ignore
-    const alertMessage = useSelector(state => state.alertMessageReducer.message);
+    const loggingIn = useSelector(state => state.authentication.loggingIn)
     const dispatch = useDispatch()
-
     // @ts-ignore
     function handleOnChange(e){
         const {name, value} = e.target;
@@ -26,8 +26,6 @@ const FormLogin = () => {
         setSubmitted(true);
         if(user.email && user.password && reg.test(user.email)) {
             dispatch(userActions.login(user.email, user.password));
-        }else{
-
         }
     }
 
@@ -46,8 +44,10 @@ const FormLogin = () => {
                     <div className="invalidFeedback">Password is required</div>
                 }
                 <br />
-                <button className="buttonForm" onClick={handleOnClick}>Log in</button>
-                { alertMessage }
+                <button className="buttonForm" onClick={handleOnClick}>
+                    {loggingIn ? <svg className="spinner" viewBox="0 0 50 50"><circle className="path" cx="25" cy="25" r="20" fill="none" strokeWidth="5"></circle></svg> : <div>Log in</div>}
+                </button>
+                {/* <Link to="/register">Register</Link> */}
             </form>
         </>
     );
