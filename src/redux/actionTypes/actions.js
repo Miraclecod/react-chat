@@ -1,15 +1,12 @@
 import {userServices} from "../service/userService"
 import {alertMessageActions} from "./alertMessage";
 import {userConstant} from "../constant/userConstant";
-import {createBrowserHistory} from "history"
 
 export const userActions = {
     login,
     logout,
     register
 };
-
-//const history = createBrowserHistory();
 
 function login(username, password) {
     return dispatch => {
@@ -19,7 +16,7 @@ function login(username, password) {
             .then(
                 user => {
                     dispatch(success(user));
-                   // history.push('/');
+                    history.push('/');
                 },
                 error => {
                     dispatch(failure(error.toString()));
@@ -38,15 +35,15 @@ function logout() {
     return { type: userConstant.LOGOUT };
 }
 
-function register(user) {
+function register(email, password) {
     return dispatch => {
-        dispatch(request(user));
+        dispatch(request(email));
 
-        userServices.register(user)
+        userServices.register(email, password)
             .then(
                 user => {
                     dispatch(success());
-                   // history.push('/login');
+                    history.push('/login');
                     dispatch(alertMessageActions.success('Registration successful'));
                 },
                 error => {

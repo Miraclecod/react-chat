@@ -3,8 +3,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 //@ts-ignore
 import {userActions} from "../redux/actionTypes/actions";
+import Spinner from "./Spinner";
 
-const FormLogin = () => {
+const FormLogin: React.FC = (): JSX.Element => {
 
     const initialState = { email: '', password: '' }
 
@@ -45,9 +46,9 @@ const FormLogin = () => {
                 }
                 <br />
                 <button className="buttonForm" onClick={handleOnClick}>
-                    {loggingIn ? <svg className="spinner" viewBox="0 0 50 50"><circle className="path" cx="25" cy="25" r="20" fill="none" strokeWidth="5"></circle></svg> : <div>Log in</div>}
+                    {loggingIn ? <Spinner /> : <div>Login</div>}
                 </button>
-                {/* <Link to="/register">Register</Link> */}
+                 <Link to="/register" className="linkStyle">Register</Link>
             </form>
         </>
     );

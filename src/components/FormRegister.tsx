@@ -3,14 +3,16 @@ import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom"
 //@ts-ignore
 import {userActions} from "../redux/actionTypes/actions"
+import Spinner from "./Spinner";
 
-const FormRegister = () => {
+const FormRegister: React.FC = (): JSX.Element => {
 
     const initialState = { email: '', password: '', name: '', lastName: '' }
 
     const [user, setUser] = React.useState(initialState);
     const [submitted, setSubmitted] = React.useState(false);
     const dispatch = useDispatch();
+    const registering = useSelector(state => state.registr.registering);
     // @ts-ignore
     function handleOnChange(e) {
         const {name, value} = e.target;
@@ -20,34 +22,28 @@ const FormRegister = () => {
     function handleOnClick(e) {
         e.preventDefault();
         setSubmitted(true);
-        if(user.name && user.password && user.name && user.lastName) dispatch(userActions.register(user));
+        if(user.email && user.password) dispatch(userActions.register(user.email, user.password));
     }
 
     return(
       <>
-      <form>
-          <input type="email" className="inputStyle" name={user.email} onChange={handleOnChange} />
-          {
-              submitted && !user.email &&
-              <div className="invalidFeedback">Email is required</div>
-          }
-          <input type="password" name={user.password} className="inputStyle" onChange={handleOnChange} />
-          {
-              submitted && !user.password &&
-              <div className="invalidFeedback">Password is Required</div>
-          }
-          <input type="text" name={user.name}  className="inputStyle" onChange={handleOnChange} />
-          {
-              submitted && !user.name &&
-              <div className="invalidFeedback">Name is required</div>
-          }
-          <input type="text" name={user.lastName} className="inputStyle" onChange={handleOnChange} />
-          {
-              submitted && !user.lastName &&
-              <div className="invalidFeedback">Lastname is required</div>
-          }
-          <button onClick={handleOnClick} className="buttonForm">Registration</button>
-          {/* <Link to="/" >Back</Link> */}
+          <form className="formStyle">
+              <p className="textFormStyle">Login : </p><input type="email" name="email" className="inputStyle" value={user.email} placeholder="enter email" onChange={handleOnChange} /><br />
+              {
+                  submitted && !user.email &&
+                  <div className="invalidFeedback">Email is required</div>
+              }
+              <br />
+              <p className="textFormStyle" >Password : </p><input type="password" name="password" className="inputStyle" value={user.password} placeholder="enter password" onChange={handleOnChange} /><br />
+              {
+                  submitted && !user.password &&
+                  <div className="invalidFeedback">Password is required</div>
+              }
+              <br />
+              <button className="buttonForm" onClick={handleOnClick}>
+                  {registering ? <Spinner /> : <div>Check in</div>}
+              </button>
+           <Link to="/" className="linkStyle" >Login</Link>
       </form>
       </>
     );

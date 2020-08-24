@@ -1,41 +1,35 @@
 import React from "react"
 import { useDispatch, useSelector } from "react-redux"
- import { Router, Route, Switch, Redirect, BrowserRouter } from 'react-router-dom'
-// import { createBrowserHistory } from "history"
+ import { Router, Route, Switch, Redirect, BrowserRouter } from "react-router-dom"
+ import { createBrowserHistory } from "history"
  
 import Home from "./Pages/Home"
 import Login from "./Pages/Login"
-import Register from './Pages/Register'
+import Register from "./Pages/Register"
+import NotFound from "./Pages/NotFound"
+import PrivateRouter from "./router/PrivateRoute"
 
-const App = () => {
+const App: React.FC = () => {
 
-    //@ts-ignore
-    const fg = useSelector(state => state.authentication.loggedIn)
+    const history = createBrowserHistory();
 
-    //const history = createBrowserHistory();
-
+    console.log(history)
     React.useEffect( () => {
-        // history.listen((location, action) => {
 
-        // });
-        fg
     },[])
 
     return(
         <>
-        {fg ? (
-            <Home /> ):
-            ( <Login />
-            )}
-            {/* <BrowserRouter>
+            <Router history={history}>
                 <Switch>
-                    <Route exact path="/" component={Login} ></Route>
+                    <Redirect exact from="/" to="/login" ></Redirect>
+                    <Route path="/login" component={Login}></Route>
                     <Route exact path="/register" component={Register} ></Route>
-                    <Route path="/login" component={Home} ></Route>
+                    <Route exact path="*" component={NotFound}></Route>
                 </Switch>
-            </BrowserRouter> */}
+            </Router>
         </>
     );
 }
 
-export default App
+export default App;

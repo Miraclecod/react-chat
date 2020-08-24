@@ -1,7 +1,4 @@
 import {auth} from "../firebase"
-// Retrieve services via the defaultApp variable...
-
-
 
 export const userServices = {
     login,
@@ -10,16 +7,6 @@ export const userServices = {
 }
 
 function login(email, password) {
-    const requestOptions = {
-        method: 'POST',
-        body: JSON.stringify({email, password})
-    };
-    // return fetch('/', requestOptions)
-    //     .then(res)
-    //     .then(user => {
-    //         localStorage.setItem('user', JSON.stringify(user));
-    //         return user;
-    //     })
     return auth.signInWithEmailAndPassword(email, password)
         .then(function(user) {
             console.log(user);
@@ -36,13 +23,8 @@ function logout() {
         .catch(e)
 }
 
-function register(user) {
-    const requestOptions = {
-        method: 'POST',
-        body: JSON.stringify(user)
-    };
-    //return fetch('/', requestOptions).then(res);
-    return auth.createUserWithEmailAndPassword(user);
+function register(email, password) {
+    return auth.createUserWithEmailAndPassword(email, password);
 }
 
 function deleteUser(user) {
@@ -51,4 +33,12 @@ function deleteUser(user) {
         body: JSON.stringify(user)
     }
     return fetch('/', requestOptions.then(res));
+}
+
+function checkToken() {
+    auth.currentUser.getIdToken(true).then(function (idToken){
+
+    }).catch(function (error) {
+
+    })
 }
