@@ -3,18 +3,16 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import {applyMiddleware, createStore, compose} from "redux";
 import createSagaMiddleware from "redux-saga";
-import {Router} from "react-router-dom"
-import thunkMiddleware from "redux-thunk"
+import thunkMiddleware from "redux-thunk";
+import { PersistGate } from "redux-persist/integration/react";
 //@ts-ignore
 import { rootReducer } from "./redux/rootReducer";
 import App from "./App";
 // @ts-ignore
 import Saga from "./sagas/index";
 import "./styles/main.sass";
-import {Router} from "react-router";
-import {createBrowserHistory} from "history";
-
-const history = createBrowserHistory();
+// @ts-ignore
+import {persistor} from "./configureStore"
 //const sagaMiddleware = createSagaMiddleware()
 
  const store = createStore(rootReducer, compose(
@@ -28,9 +26,9 @@ const history = createBrowserHistory();
 
 ReactDOM.render(
     <Provider store={store}>
-        {/*<Router history={history}>*/}
+        <PersistGate loading={null} persistor={persistor} >
         <App />
-        {/*</Router>*/}
+        </PersistGate>
     </Provider>,
     document.getElementById("app")
 );

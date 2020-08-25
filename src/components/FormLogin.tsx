@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 //@ts-ignore
@@ -9,12 +9,13 @@ const FormLogin: React.FC = (): JSX.Element => {
 
     const initialState = { email: '', password: '' }
 
-    const [user, setUser] = React.useState(initialState);
+    const [user, setUser] = useState(initialState);
 
-    const [submitted, setSubmitted] = React.useState(false);
+    const [submitted, setSubmitted] = useState(false);
     //@ts-ignore
     const loggingIn = useSelector(state => state.authentication.loggingIn)
     const dispatch = useDispatch()
+
     // @ts-ignore
     function handleOnChange(e){
         const {name, value} = e.target;
@@ -31,7 +32,6 @@ const FormLogin: React.FC = (): JSX.Element => {
     }
 
     return(
-        <>
             <form className="formStyle">
                 <p className="textFormStyle">Login : </p><input type="email" name="email" className="inputStyle" value={user.email} placeholder="enter email" onChange={handleOnChange} /><br />
                 {
@@ -50,7 +50,6 @@ const FormLogin: React.FC = (): JSX.Element => {
                 </button>
                  <Link to="/register" className="linkStyle">Register</Link>
             </form>
-        </>
     );
 }
 

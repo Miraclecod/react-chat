@@ -1,14 +1,19 @@
-import React from "react";
-import Panel from "../components/Panel";
+import React, {useEffect} from "react";
 import {useSelector} from "react-redux";
+import {useHistory} from "react-router-dom";
+
+import Panel from "../components/Panel";
 
 const Home = () => {
 
-    const token = useSelector(state => state.authentication.token)
+    let history = useHistory();
 
-    React.useEffect( () => {
-        console.log(token)
-    },[token])
+    const tokenUid = useSelector(state => state.authentication.user)
+
+    useEffect( () => {
+        if(!tokenUid) history.push("/login")
+    },[tokenUid])
+
 
     return (
         <>

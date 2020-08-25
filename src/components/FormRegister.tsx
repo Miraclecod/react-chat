@@ -26,7 +26,6 @@ const FormRegister: React.FC = (): JSX.Element => {
     }
 
     return(
-      <>
           <form className="formStyle">
               <p className="textFormStyle">Login : </p><input type="email" name="email" className="inputStyle" value={user.email} placeholder="enter email" onChange={handleOnChange} /><br />
               {
@@ -43,9 +42,8 @@ const FormRegister: React.FC = (): JSX.Element => {
               <button className="buttonForm" onClick={handleOnClick}>
                   {registering ? <Spinner /> : <div>Check in</div>}
               </button>
-           <Link to="/" className="linkStyle" >Login</Link>
+           <Link to="/login" className="linkStyle" >Login</Link>
       </form>
-      </>
     );
 }
 

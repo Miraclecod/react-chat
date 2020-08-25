@@ -20,7 +20,7 @@ function login(email, password) {
 function logout() {
     localStorage.removeItem('user');
     auth.signOut()
-        .catch(e)
+        .catch()
 }
 
 function register(email, password) {
