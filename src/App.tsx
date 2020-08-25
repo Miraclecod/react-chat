@@ -11,7 +11,7 @@ import PrivateRouter from "./router/PrivateRoute"
 
 const App: React.FC = () => {
 
-    const history = createBrowserHistory();
+    // const history = createBrowserHistory();
 
     console.log(history)
     React.useEffect( () => {
@@ -20,14 +20,14 @@ const App: React.FC = () => {
 
     return(
         <>
-            <Router history={history}>
+            <BrowserRouter>
                 <Switch>
                     <Redirect exact from="/" to="/login" ></Redirect>
                     <Route path="/login" component={Login}></Route>
                     <Route exact path="/register" component={Register} ></Route>
                     <Route exact path="*" component={NotFound}></Route>
                 </Switch>
-            </Router>
+            </BrowserRouter>
         </>
     );
 }
