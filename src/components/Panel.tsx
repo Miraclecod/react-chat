@@ -2,6 +2,7 @@ import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 
+//@ts-ignore
 import {userActions} from "../redux/actionTypes/actions";
 
 const Panel: React.FC = (): JSX.Element => {
