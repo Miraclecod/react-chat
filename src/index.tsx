@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import {applyMiddleware, createStore, compose} from "redux";
 import createSagaMiddleware from "redux-saga";
 import thunkMiddleware from "redux-thunk";
+//@ts-ignore
 import { PersistGate } from "redux-persist/integration/react";
 //@ts-ignore
 import { rootReducer } from "./redux/rootReducer";

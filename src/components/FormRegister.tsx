@@ -12,6 +12,7 @@ const FormRegister: React.FC = (): JSX.Element => {
     const [user, setUser] = React.useState(initialState);
     const [submitted, setSubmitted] = React.useState(false);
     const dispatch = useDispatch();
+    //@ts-ignore
     const registering = useSelector(state => state.registr.registering);
     // @ts-ignore
     function handleOnChange(e) {

@@ -13,7 +13,7 @@ function login(email, password) {
             localStorage.setItem('user', JSON.stringify(user.user.refreshToken))
             return user.user
         }).catch(function(error){
-            console.log(error);
+            return error
         });
 }
 

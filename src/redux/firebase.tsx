@@ -13,9 +13,9 @@ const firebaseConfig = {
     appId: "1:620539073542:web:67c10d9f011ba69c679f87"
 };
 let defaultApp = firebase.initializeApp(firebaseConfig);
-let database = firebase.database();
 // Initialize Firebase
 
+export const database = defaultApp.database(); 
 export const auth = defaultApp.auth();
 
 const structureChat = {

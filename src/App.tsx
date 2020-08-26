@@ -8,6 +8,7 @@ import Login from "./Pages/Login"
 import Register from "./Pages/Register"
 import NotFound from "./Pages/NotFound"
 import {PrivateRoute} from "./router/PrivateRoute"
+import Messages from "./Pages/Messages"
 
 const App: React.FC = () => {
 
@@ -16,6 +17,7 @@ const App: React.FC = () => {
                 <Switch>
                     <PrivateRoute exact path="/" component={Home} />
                     <Route path="/login" component={Login}></Route>
+                    <Route path="/messages" component={Messages} />
                     <Route path="/register" component={Register} ></Route>
                     <Route path="*" component={NotFound}></Route>
                 </Switch>

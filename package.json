@@ -32,6 +32,7 @@
   "dependencies": {
     "@jest/globals": "^26.4.0",
     "@react-firebase/auth": "^0.2.10",
+    "@types/lodash": "^4.14.160",
     "@types/react-redux": "^7.1.9",
     "@types/react-router-dom": "^5.1.5",
     "enzyme": "^3.11.0",
@@ -39,6 +40,7 @@
     "firebase": "^7.19.0",
     "jest": "^26.4.0",
     "jest-enzyme": "^7.1.2",
+    "lodash": "^4.17.20",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",

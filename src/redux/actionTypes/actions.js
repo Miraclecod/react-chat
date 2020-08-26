@@ -18,12 +18,13 @@ function login(username, password) {
                 user => {
                     dispatch(success(user));
                     history.push("/")
-                },
+                }
+            ).catch(
                 error => {
                     dispatch(failure(error.toString()));
                     dispatch(alertMessageActions.error(error.toString()));
                 }
-            );
+            )
     };
 
     function request(user) { return { type: userConstant.LOGIN_REQUEST, user } }

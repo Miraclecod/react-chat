@@ -18,10 +18,12 @@ const Panel: React.FC = (): JSX.Element => {
     return (
         <div className="panelStyle" >
             <div className="containerPanel" >
+                <nav>
                 <Link to="/" className="panelLink">Home page</Link><br />
                 <Link to="/messages" className="panelLink">Messages</Link><br />
                 <Link to="settings" className="panelLink">Settings</Link><br />
                 <button onClick={handleOnClick} className="buttonPanel" >Logout</button>
+                </nav>
             </div>
         </div>
     );
