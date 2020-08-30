@@ -15,24 +15,5 @@ const firebaseConfig = {
 let defaultApp = firebase.initializeApp(firebaseConfig);
 // Initialize Firebase
 
-export const database = defaultApp.database(); 
+export const database = firebase.database(); 
 export const auth = defaultApp.auth();
-
-const structureChat = {
-    "chats": {
-        "one": {
-            "title": "test",
-            "lastMessage": "test",
-            "time": "12:30"
-        }
-    },
-    "messages": {
-        "one": {
-            "m1": {
-                "name": "User",
-                "message": "thank you",
-                "time": ""
-            }
-        }
-    }
-}

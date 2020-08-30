@@ -3,6 +3,7 @@ import {useSelector} from "react-redux";
 import {useHistory} from "react-router-dom";
 
 import Panel from "../components/Panel";
+import Chats from "./Chats";
 //@ts-ignore
 
 const Home = () => {
@@ -19,6 +20,7 @@ const Home = () => {
     return (
         <>
             <Panel />
+            <Chats />
         </>
     );
 }

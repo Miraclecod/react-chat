@@ -1,36 +1,68 @@
 import React, { useState, useEffect } from "react";
-import { database } from "../redux/firebase";
-import _ from "lodash"
+import { database, auth } from "../redux/firebase";
+import _ from "lodash";
+import moment from "moment";
+import InfiniteScroll from "react-infinite-scroller";
+import Spinner from "../components/Spinner";
 
 const Messages = () => {
 
-    let data = database.ref("education-b755f");
+    function loadFunction(){
 
-    const messages = [{ name: "Kirill",text: "hello" }, { name: "Pasha" ,text: "hi" }, { name: "Masha" ,text: "world" }];
+    }
+
+    const messages = [{ name: "Kirill",text: "hello" }, { name: "Pasha" ,text: "hi" }, { name: "Masha" ,text: "world" }, { name: "Kirill",text: "hello" }, { name: "Pasha" ,text: "hi" }, { name: "Masha" ,text: "world" }, { name: "Kirill",text: "hello" }, { name: "Pasha" ,text: "hi" }, { name: "Masha" ,text: "world" }, { name: "Kirill",text: "hello" }, { name: "Pasha" ,text: "hi" }, { name: "Masha" ,text: "world" }, { name: "Kirill",text: "hello" }, { name: "Pasha" ,text: "hi" }, { name: "Masha" ,text: "world" }, { name: "Kirill",text: "hello" }, { name: "Pasha" ,text: "hi" }, { name: "Masha" ,text: "world" }, { name: "Kirill",text: "hello" }, { name: "Pasha" ,text: "hi" }, { name: "Masha" ,text: "world" }, { name: "Kirill",text: "hello" }, { name: "Pasha" ,text: "hi" }, { name: "Masha" ,text: "world" }, { name: "Kirill",text: "hello" }, { name: "Pasha" ,text: "hi" }, { name: "Masha" ,text: "world" }, { name: "Kirill",text: "hello" }, { name: "Pasha" ,text: "hi" }, { name: "Masha" ,text: "world" }];
 
     const [searchString, setSearchString] = useState('')
 
-    const [searchResult, setSearchResult] = useState([]);
+    const [searchResult, setSearchResult] = useState([]);   
 
-
+    
+    //@ts-ignore
     function handleSearch(e) {
-            console.log(e.target.value)
-            setSearchString(e.target.value.toLowerCase());
+            const { value: nextValue } = e.target;
+            const debouncedSave = _.debounce( () => setSearchString(nextValue), 300);
+            debouncedSave();
     }
     
     useEffect( () => {
         const result = messages.filter(item => 
             item.name.toLowerCase().includes(searchString) || item.text.toLowerCase().includes(searchString)
         );
-        console.log(result)
         setSearchResult(result);
     }, [searchString])
+    
 
+    function setData(userId:String, message:String, name:String, time:TimeRanges){
+        database.ref("messages/").set({
+            message: message,
+            name: name,
+            time: time
+        })
+    }
+
+    let arr = []
+
+    function readData(userId: String) {
+        database.ref("users/" + userId).on("value", function(snapshot){
+            arr.push(snapshot.val());
+        })
+    }
+    readData("0");
+    readData("1");
+
+    console.log(arr)
 
     return (
         <div className="containerMessage">
-            <input type="text" className="inputStyle" onChange={handleSearch} placeholder="" />
-            {
+            <input type="text" className="inputMessageStyle" onChange={handleSearch} placeholder="search message" /><br /><br />
+            <div className="lastDate">last message { moment().startOf('day').fromNow() }</div>
+                 <InfiniteScroll
+                 pageStart={0}
+                 loadMore={loadFunction}
+                 hasMore={true || false}
+                 loader={<Spinner />}
+             >{
                 searchResult.map( (item, index) => {
                     return (
                         <div className="messageStyle"
@@ -41,6 +73,7 @@ const Messages = () => {
                     );
                 })
             }
+                </InfiniteScroll>
         </div>
     );
 }
