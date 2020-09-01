@@ -6,7 +6,7 @@ import Panel from "../components/Panel";
 import Chats from "./Chats";
 //@ts-ignore
 
-const Home = () => {
+const Home = ():JSX.Element => {
 
     let history = useHistory();
     //@ts-ignore

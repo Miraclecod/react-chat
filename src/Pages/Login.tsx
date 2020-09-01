@@ -8,7 +8,7 @@ const  container = {
 }
 
 
-const Login = () => {
+const Login = ():JSX.Element => {
 
     return(
         <div style={container}>

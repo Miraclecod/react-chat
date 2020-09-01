@@ -19,7 +19,7 @@ module.exports = {
   devtool: "source-map",
 
   devServer: {
-    port: '8080',
+    port: '8070',
     // Change it if other port needs to be used
     hot: true,
     // enable HMR on the server

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { database, auth } from "../redux/firebase";
+import { database } from "../redux/firebase";
 import _ from "lodash";
 import moment from "moment";
 import InfiniteScroll from "react-infinite-scroller";
@@ -10,6 +10,8 @@ const Messages = () => {
     function loadFunction(){
 
     }
+
+    let arr:Array<Object> = [];
 
     const messages = [{ name: "Kirill",text: "hello" }, { name: "Pasha" ,text: "hi" }, { name: "Masha" ,text: "world" }, { name: "Kirill",text: "hello" }, { name: "Pasha" ,text: "hi" }, { name: "Masha" ,text: "world" }, { name: "Kirill",text: "hello" }, { name: "Pasha" ,text: "hi" }, { name: "Masha" ,text: "world" }, { name: "Kirill",text: "hello" }, { name: "Pasha" ,text: "hi" }, { name: "Masha" ,text: "world" }, { name: "Kirill",text: "hello" }, { name: "Pasha" ,text: "hi" }, { name: "Masha" ,text: "world" }, { name: "Kirill",text: "hello" }, { name: "Pasha" ,text: "hi" }, { name: "Masha" ,text: "world" }, { name: "Kirill",text: "hello" }, { name: "Pasha" ,text: "hi" }, { name: "Masha" ,text: "world" }, { name: "Kirill",text: "hello" }, { name: "Pasha" ,text: "hi" }, { name: "Masha" ,text: "world" }, { name: "Kirill",text: "hello" }, { name: "Pasha" ,text: "hi" }, { name: "Masha" ,text: "world" }, { name: "Kirill",text: "hello" }, { name: "Pasha" ,text: "hi" }, { name: "Masha" ,text: "world" }];
 
@@ -33,6 +35,7 @@ const Messages = () => {
     }, [searchString])
     
 
+
     function setData(userId:String, message:String, name:String, time:TimeRanges){
         database.ref("messages/").set({
             message: message,
@@ -40,16 +43,19 @@ const Messages = () => {
             time: time
         })
     }
+    const [dataArr, setDataArr] = useState([]);
 
-    let arr = []
 
-    function readData(userId: String) {
-        database.ref("users/" + userId).on("value", function(snapshot){
+    function readData() {
+        database.ref("chats").on("value", function(snapshot){
             arr.push(snapshot.val());
         })
     }
-    readData("0");
-    readData("1");
+    readData();
+
+    useEffect( () => {
+        setDataArr(arr);
+    },[])
 
     console.log(arr)
 
