@@ -7,19 +7,17 @@ import Spinner from "../components/Spinner";
 
 const Messages = () => {
 
-    function loadFunction(){
-
-    }
-
     let arr:Array<Object> = [];
 
     const messages = [{ name: "Kirill",text: "hello" }, { name: "Pasha" ,text: "hi" }, { name: "Masha" ,text: "world" }, { name: "Kirill",text: "hello" }, { name: "Pasha" ,text: "hi" }, { name: "Masha" ,text: "world" }, { name: "Kirill",text: "hello" }, { name: "Pasha" ,text: "hi" }, { name: "Masha" ,text: "world" }, { name: "Kirill",text: "hello" }, { name: "Pasha" ,text: "hi" }, { name: "Masha" ,text: "world" }, { name: "Kirill",text: "hello" }, { name: "Pasha" ,text: "hi" }, { name: "Masha" ,text: "world" }, { name: "Kirill",text: "hello" }, { name: "Pasha" ,text: "hi" }, { name: "Masha" ,text: "world" }, { name: "Kirill",text: "hello" }, { name: "Pasha" ,text: "hi" }, { name: "Masha" ,text: "world" }, { name: "Kirill",text: "hello" }, { name: "Pasha" ,text: "hi" }, { name: "Masha" ,text: "world" }, { name: "Kirill",text: "hello" }, { name: "Pasha" ,text: "hi" }, { name: "Masha" ,text: "world" }, { name: "Kirill",text: "hello" }, { name: "Pasha" ,text: "hi" }, { name: "Masha" ,text: "world" }];
 
     const [searchString, setSearchString] = useState('')
 
-    const [searchResult, setSearchResult] = useState([]);   
+    const [searchResult, setSearchResult] = useState([]);
 
-    
+    function loadFunction(){
+
+    }
     //@ts-ignore
     function handleSearch(e) {
             const { value: nextValue } = e.target;
@@ -33,10 +31,8 @@ const Messages = () => {
         );
         setSearchResult(result);
     }, [searchString])
-    
 
-
-    function setData(userId:String, message:String, name:String, time:TimeRanges){
+    function setData(userId:String, message:String, name:String, time:Date){
         database.ref("messages/").set({
             message: message,
             name: name,
@@ -44,7 +40,6 @@ const Messages = () => {
         })
     }
     const [dataArr, setDataArr] = useState([]);
-
 
     function readData() {
         database.ref("chats").on("value", function(snapshot){
