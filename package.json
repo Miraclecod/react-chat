@@ -11,6 +11,7 @@
     "test": "jest"
   },
   "devDependencies": {
+    "@types/emoji-mart": "^3.0.2",
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",
     "css-loader": "^4.2.1",
@@ -36,6 +37,7 @@
     "@types/react-infinite-scroller": "^1.2.1",
     "@types/react-redux": "^7.1.9",
     "@types/react-router-dom": "^5.1.5",
+    "emoji-mart": "^3.0.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.3",
     "firebase": "^7.19.0",

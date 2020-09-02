@@ -21,7 +21,7 @@ body
 .buttonForm
   min-width: 70px
   text-align: center
-  height: 35px
+  min-height: 35px
   color: #fff
   background-color: $inputColor
   border: 1px solid $inputColor
@@ -136,6 +136,8 @@ body
   min-width: 300px
   min-height: 50px  
   text-align: center
+  transform: rotate(180deg)
+  direction: ltr
 
 .lastDate
   text-align: center
@@ -147,3 +149,10 @@ body
     margin-left: 10px
     &:focus
       color: greenyellow
+
+.containerText
+  border: 1px solid
+  height: 400px
+  overflow: auto
+  transform: rotate(180deg)
+  direction: rtl

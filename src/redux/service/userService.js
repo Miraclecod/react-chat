@@ -1,9 +1,10 @@
-import {auth} from "../firebase"
+import {auth, database} from "../firebase"
 
 export const userServices = {
     login,
     logout,
-    register
+    register,
+    allDialog
 }
 
 function login(email, password) {
@@ -41,4 +42,15 @@ function checkToken() {
     }).catch(function (error) {
 
     })
+}
+
+function allDialog() {
+    let arr = [];
+    database.ref("chats").on("value", function(snapshot){
+        arr.push(snapshot.val());
+        snapshot.forEach(function (childSnapshot){
+            arr.push(childSnapshot.val());
+        })
+    })
+    return arr;
 }

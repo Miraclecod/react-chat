@@ -4,7 +4,6 @@ import {useHistory} from "react-router-dom";
 
 import Panel from "../components/Panel";
 import Chats from "./Chats";
-//@ts-ignore
 
 const Home = ():JSX.Element => {
 

@@ -3,6 +3,8 @@ import { database } from "../redux/firebase";
 import _ from "lodash";
 import moment from "moment";
 import InfiniteScroll from "react-infinite-scroller";
+import { Picker } from 'emoji-mart'
+
 import Spinner from "../components/Spinner";
 
 const Messages = () => {
@@ -24,9 +26,9 @@ const Messages = () => {
             const debouncedSave = _.debounce( () => setSearchString(nextValue), 300);
             debouncedSave();
     }
-    
+
     useEffect( () => {
-        const result = messages.filter(item => 
+        const result = messages.filter(item =>
             item.name.toLowerCase().includes(searchString) || item.text.toLowerCase().includes(searchString)
         );
         setSearchResult(result);
@@ -47,17 +49,29 @@ const Messages = () => {
         })
     }
     readData();
-
     useEffect( () => {
         setDataArr(arr);
     },[])
-
-    console.log(arr)
-
+    const [text, setText] = useState('');
+    //@ts-ignore
+    function handleSearchs(e) {
+        setText(e.target.value);
+    }
+    //@ts-ignore
+    function addEmoji(e) {
+        let emoji = e.native;
+        console.log(emoji);
+        //setState({text: state + emoji});
+    }
+    //@ts-ignore
+    function handleOnMessageClick(e) {
+        e.preventDefault();
+    }
     return (
         <div className="containerMessage">
             <input type="text" className="inputMessageStyle" onChange={handleSearch} placeholder="search message" /><br /><br />
             <div className="lastDate">last message { moment().startOf('day').fromNow() }</div>
+            <div className="containerText">
                  <InfiniteScroll
                  pageStart={0}
                  loadMore={loadFunction}
@@ -75,6 +89,9 @@ const Messages = () => {
                 })
             }
                 </InfiniteScroll>
+            </div>
+            <input type="text" onChange={handleSearchs} placeholder="enter message" className="inputStyle" /><button className="buttonForm" onClick={handleOnMessageClick}>send message</button>
+            <span><Picker onSelect={addEmoji} /></span>
         </div>
     );
 }

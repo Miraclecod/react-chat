@@ -58,3 +58,11 @@ function register(email, password) {
     function success(user) { return { type: userConstant.REGISTER_SUCCESS, user } }
     function failure(error) { return { type: userConstant.REGISTER_FAILURE, error } }
 }
+
+
+function MessageSuccess(all) {
+    return {
+        type: "ALL_DATA",
+        payload: all
+    }
+}

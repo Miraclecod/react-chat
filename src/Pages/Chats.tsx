@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import {NavLink} from "react-router-dom";
 
 const Chats = (): JSX.Element => {
     //@ts-ignore
@@ -34,9 +33,7 @@ const Chats = (): JSX.Element => {
                 <button className="buttonForm">Saved dialog</button>
                 <button className="buttonForm">Active dialog</button>
                 <button className="buttonForm">Completed dialog</button>
-                {/*<NavLink to="/saved" activeStyle={{ color: '#007bff' }}>Saved dialog</NavLink>*/}
-                {/*<NavLink to="/active" activeStyle={{ color: '#007bff' }}>Active dialog</NavLink>*/}
-                {/*<NavLink to="/completed" activeStyle={{ color: '#007bff' }}>Completed dialog</NavLink>*/}
+                <button className="buttonForm">Not taken dialog</button>
             </div>
             {
                 searchResult.map((item, index) => {
