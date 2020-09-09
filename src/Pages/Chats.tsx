@@ -11,20 +11,20 @@ const Chats = (): JSX.Element => {
     const [searchResult, setSearchResult] = useState([]);
 
     const [searchChat, setSearchChat] = useState('');
-    
+        
     useEffect( () => {
         const result = chats.filter(item => 
             item.clientName.toLowerCase().includes(searchChat) || item.messages.content.toLowerCase().includes(searchChat)
         );
         setSearchResult(result);
     }, [searchChat])
-
+    
     function handleSearch() {
         //@ts-ignore
-        const {value : nextValue} = event.target
-        setSearchChat( nextValue )
+        const {value : nextValue} = event.target;
+        setSearchChat( nextValue );
     }
-
+ 
     return (
         <div className="containerMessage">
             <input type="text" className="inputMessageStyle" onChange={handleSearch}
@@ -56,9 +56,6 @@ const Chats = (): JSX.Element => {
 }
 
 export default Chats;
-
-
-
 
 
 

@@ -38,19 +38,35 @@ function deleteUser(user) {
 
 function checkToken() {
     auth.currentUser.getIdToken(true).then(function (idToken){
-
+        //return idToken;
     }).catch(function (error) {
-
+        //return error;
     })
 }
 
 function allDialog() {
     let arr = [];
     database.ref("chats").on("value", function(snapshot){
-        arr.push(snapshot.val());
         snapshot.forEach(function (childSnapshot){
             arr.push(childSnapshot.val());
         })
     })
     return arr;
 }
+// function setData(userId, message, name, time){
+//     database.ref("messages/").set({
+//         message: message,
+//         name: name,
+//         time: time
+//     })
+// }
+
+function singleDialog(id) {
+    let arr = [];
+    database.ref("chats/" + id).on("value", function(snapshot){
+        arr.push(snapshot.val());
+    })
+    return arr;
+}
+
+

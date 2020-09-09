@@ -51,12 +51,11 @@ module.exports = {
         ]
       },
       {
-        test: /\.css$/,
+        test: /\.css$/i,
         exclude: /node_modules/,
         use: [
           'style-loader',
-          'css-loader'
-        ]
+          'css-loader']
       },
       {
         test: /\.s[ac]ss$/i,

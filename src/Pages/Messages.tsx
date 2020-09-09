@@ -3,7 +3,9 @@ import { database } from "../redux/firebase";
 import _ from "lodash";
 import moment from "moment";
 import InfiniteScroll from "react-infinite-scroller";
-import { Picker } from 'emoji-mart'
+//import "emoji-mart/css/emoji-mart.css";
+import { Picker } from "emoji-mart";
+import Autocomplete from '@material-ui/lab/Autocomplete';
 
 import Spinner from "../components/Spinner";
 
@@ -26,14 +28,14 @@ const Messages = () => {
             const debouncedSave = _.debounce( () => setSearchString(nextValue), 300);
             debouncedSave();
     }
-
+    
     useEffect( () => {
         const result = messages.filter(item =>
             item.name.toLowerCase().includes(searchString) || item.text.toLowerCase().includes(searchString)
         );
         setSearchResult(result);
     }, [searchString])
-
+    
     function setData(userId:String, message:String, name:String, time:Date){
         database.ref("messages/").set({
             message: message,
@@ -41,6 +43,7 @@ const Messages = () => {
             time: time
         })
     }
+    
     const [dataArr, setDataArr] = useState([]);
 
     function readData() {
@@ -49,6 +52,7 @@ const Messages = () => {
         })
     }
     readData();
+
     useEffect( () => {
         setDataArr(arr);
     },[])
@@ -61,12 +65,22 @@ const Messages = () => {
     function addEmoji(e) {
         let emoji = e.native;
         console.log(emoji);
+        setText(text + emoji)
         //setState({text: state + emoji});
     }
     //@ts-ignore
     function handleOnMessageClick(e) {
         e.preventDefault();
+        console.log(text);
     }
+
+    function getDataInTime() {
+        const debainced = _.debounce( () => setDataArr(arr), 30000);
+        debainced();
+    }
+
+    const options = ['Hello', 'good bye'];
+
     return (
         <div className="containerMessage">
             <input type="text" className="inputMessageStyle" onChange={handleSearch} placeholder="search message" /><br /><br />
@@ -90,10 +104,21 @@ const Messages = () => {
             }
                 </InfiniteScroll>
             </div>
-            <input type="text" onChange={handleSearchs} placeholder="enter message" className="inputStyle" /><button className="buttonForm" onClick={handleOnMessageClick}>send message</button>
+            {/* <Autocomplete
+                id="custom-input-demo"
+                options={options}
+                renderInput={(params) => (
+                    <div ref={params.InputProps.ref}>
+                    <input style={{ width: 200 }} type="text" className="inputStyle" {...params.inputProps} />
+                    </div>
+                )}
+                /> */}
+            <input type="text" onChange={handleSearchs} placeholder="enter message" className="inputStyle" />
+            <button className="buttonForm" onClick={handleOnMessageClick}>send message</button>
             <span><Picker onSelect={addEmoji} /></span>
         </div>
     );
 }
+
 
 export default Messages;

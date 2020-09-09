@@ -5,6 +5,10 @@ export function Message(state = [], action) {
             return{
                 //...state, action.payload
             }
+        case "UPDATE_DATA": 
+            return {
+                //...state, action.payload
+            }    
         default:
             return state
     }
